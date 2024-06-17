@@ -11,6 +11,7 @@ import (
 
 const key = "01234567890123456789012345678901"
 
+
 func Encrypt(plaintext []byte) ([]byte, error) {
 	c, err := aes.NewCipher([]byte(key))
 	if err != nil {
