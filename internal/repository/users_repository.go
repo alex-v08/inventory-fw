@@ -7,7 +7,8 @@ import (
 )
 
 const (
-	qryInsertUser = `INSERT INTO users (email, name, password) VALUES (?, ?, ?)`
+	qryInsertUser = `INSERT INTO USERS (email, name, password) 
+	                 VALUES (?, ?, ?)`
 	qrySelectUser = `SELECT id, email, name, password FROM users WHERE email = ?`
 )
 
@@ -22,5 +23,9 @@ func (r *repo) GetUserByEmail(ctx context.Context, email string) (*entity.User, 
 	u := &entity.User{}
 
 	err := r.db.GetContext(ctx, u, qrySelectUser, email)
-	return u, err
+	if err != nil {
+		return nil, err
+	}
+
+	return u, nil
 }
