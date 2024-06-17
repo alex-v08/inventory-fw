@@ -11,7 +11,6 @@ import (
 
 const key = "01234567890123456789012345678901"
 
-
 func Encrypt(plaintext []byte) ([]byte, error) {
 	c, err := aes.NewCipher([]byte(key))
 	if err != nil {
@@ -51,10 +50,10 @@ func Decrypt(ciphertext []byte) ([]byte, error) {
 	return gcm.Open(nil, nonce, ciphertext, nil)
 }
 
-func ToBase64(b []byte) string {
-	return base64.RawStdEncoding.EncodeToString(b)
+func ToBase64(plaintext []byte) string {
+	return base64.RawStdEncoding.EncodeToString(plaintext)
 }
 
-func FromBase64(s string) ([]byte, error) {
-	return base64.RawStdEncoding.DecodeString(s)
+func FromBase64(ciphertext string) ([]byte, error) {
+	return base64.RawStdEncoding.DecodeString(ciphertext)
 }
